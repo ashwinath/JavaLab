@@ -5,6 +5,7 @@ public class Main {
   public static void main (String[] args) {
     System.out.print("Do you have dogs? (y/n) ");
     Scanner scanner = new Scanner(System.in);
+    Dog currentDog = new Dog();
 
     try {
       char yesNo = scanner.next(".").charAt(0);
@@ -24,26 +25,20 @@ public class Main {
         }
 
         for (int i = 0; i < numberOfDogs; ++i) {
-          System.out.print("How old is dog #" + (i+1) + "? ");
-          int age = scanner.nextInt();
 
-          if (age < 0) {
-            throw new InputMismatchException();
-          }
+          System.out.print("How old is dog #" + (i+1) + "? ");
+          int dogAge = currentDog.getAge();
 
           System.out.print("male or female? ");
-          String gender = scanner.next();
+          String gender = currentDog.getGender();
 
-          if (!gender.equals("male") && !gender.equals("female"))
-            throw new InputMismatchException();
-
-          Dog currentDog = new Dog(gender, age);
           currentDog.printAge();
         }
       }
     } catch (InputMismatchException e) {
       System.out.println("Error in input");
     } finally {
+      currentDog.closeScanner();
       scanner.close();
     }
   }
