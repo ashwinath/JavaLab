@@ -1,11 +1,7 @@
-import java.util.Scanner;
-import java.util.InputMismatchException;
-
 public class Dog {
   private String gender;
   private int dogAge;
   private double humanAge;
-  private Scanner scanner = new Scanner(System.in);
 
   public Dog() {
   }
@@ -28,22 +24,11 @@ public class Dog {
       return 10.5 * 2 + (double) (dogAge - 2) * 4.0;
   }
 
-  public int getAge() {
-    dogAge = scanner.nextInt();
-    if (dogAge < 0)
-      throw new InputMismatchException();
-    return dogAge;
+  public void setAge(int age) {
+    dogAge = age;
   }
 
-  public String getGender() {
-    gender = scanner.next();
-    if (!gender.equals("male") && 
-        !gender.equals("female"))
-      throw new InputMismatchException();
-    return gender;
-  }
-  
-  public void closeScanner() {
-    scanner.close();
+  public void setGender(String maleFemale) {
+    gender = maleFemale;
   }
 }
