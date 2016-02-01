@@ -75,19 +75,23 @@ public class Main {
 
   public static void main (String[] args) {
     // ask if user has dog(s)
-    boolean boolDog = hasDog();
-    if (!boolDog)
-      return;
+    try {
+      boolean boolDog = hasDog();
+      if (!boolDog)
+        return;
 
-    // get numberOfDogs
-    int number = numberOfDogs();
+      // get numberOfDogs
+      int number = numberOfDogs();
 
-    // loop for the number of dogs
-    Dog currentDog = new Dog();
-    for (int i = 0; i < number; ++i) {
-      currentDog.setAge(getAge(i));
-      currentDog.setGender(getGender());
-      currentDog.printAge();
-    } 
+      // loop for the number of dogs
+      Dog currentDog = new Dog();
+      for (int i = 0; i < number; ++i) {
+        currentDog.setAge(getAge(i));
+        currentDog.setGender(getGender());
+        currentDog.printAge();
+      } 
+    } finally {
+      scanner.close();
+    }
   }
 }
