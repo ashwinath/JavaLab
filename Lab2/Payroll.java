@@ -4,6 +4,9 @@
 // Date: 02-02-2016
 
 import java.text.DecimalFormat;
+import javax.swing.JOptionPane;
+import java.lang.Double;
+
 public class Payroll {
   public class Employee {
     private String name;
@@ -50,20 +53,34 @@ public class Payroll {
         "Gross Pay: $" + pay + "\n" +
         "Deductions:\n" +
 
-        "\tFederal Withholding (" + (this.federalTaxRate * 100) +
+        "      Federal Withholding (" + (this.federalTaxRate * 100) +
         "): $" + federalTaxString +
 
-        "\n\tState Withholding (" + (this.stateTaxRate * 100) +
+        "\n      State Withholding (" + (this.stateTaxRate * 100) +
         "): $" + stateTaxString +
-        "\n\tTotal Deduction: " + totalTaxString +
+        "\n      Total Deduction: " + totalTaxString +
         "\nNet pay: $" + netPayString;
       return output;
     }
   } 
+
   public static void main (String[] args) {
     Payroll payroll = new Payroll();
-    Employee employee = payroll.new Employee("Smith", 10.0, 6.75, 0.20, 0.09);
-    String output = employee.generateReportString();
-    System.out.println(output);
+
+    // error testing can be done here.
+    String name = JOptionPane.showInputDialog
+      ("Enter employee's Name: ");
+    double hours = Double.parseDouble(JOptionPane.showInputDialog
+      ("Enter Number of hours worked in a week: "));
+    double payRate = Double.parseDouble(JOptionPane.showInputDialog
+      ("Enter hourly pay rate: "));
+    double federalTax = Double.parseDouble(JOptionPane.showInputDialog
+      ("Enter Federal tax withholding rate: "));
+    double stateTax = Double.parseDouble(JOptionPane.showInputDialog
+      ("Enter State tax withholding rate: "));
+
+    Employee employee = payroll.new Employee(
+        name, hours, payRate, federalTax, stateTax);
+    JOptionPane.showMessageDialog(null, employee.generateReportString());
   }
 }
