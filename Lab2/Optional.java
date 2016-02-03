@@ -3,6 +3,9 @@
 // Author: Ashwin Nath Chatterji
 // Date: 02-02-2016
 
+import javax.swing.JOptionPane;
+import java.lang.Integer;
+
 public class Optional {
   public class Calendar {
     int month;
@@ -69,13 +72,21 @@ public class Optional {
 
   public static void main (String[] args) {
     Optional optional = new Optional();
-    Calendar calendar = optional.new Calendar(2, 2012);
-    // just implement the GUI here
-    System.out.println(calendar.getMonthString() + " 2012 has " + calendar.getDaysInMonth() + " days.");
-    // second part of the qn
-    // also needs a GUI
+
+    // part 1
+    int month = Integer.parseInt(JOptionPane.showInputDialog
+        ("Enter Month (numerical)"));
+    int year = Integer.parseInt(JOptionPane.showInputDialog
+        ("Enter Year (numerical)"));
+    Calendar calendar = optional.new Calendar(month, year);
+    JOptionPane.showMessageDialog(null, calendar.getMonthString() +
+        " " + year + 
+        " has " + calendar.getDaysInMonth() + " days.");
+    // part 2
     int randomMonth = (int)(Math.random() * 11) + 1;
     Calendar calendar2 = optional.new Calendar(randomMonth);
-    System.out.println(calendar2.getMonthString());
+    JOptionPane.showMessageDialog(null, "Random month: " + 
+         randomMonth + "\nrandomMonth has the name: " +
+         calendar2.getMonthString());
   }
 }
