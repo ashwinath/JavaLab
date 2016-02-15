@@ -91,6 +91,7 @@ public class DisplayCalendars {
         printCalendarHeader(i);
         generateMonth(i);
         System.out.println();
+        System.out.println();
       } 
     }
   }
