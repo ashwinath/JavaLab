@@ -77,12 +77,14 @@ public class DisplayCalendars {
 
       // print the numbers on the calendar
       int numberOfDays = getDaysInMonth(month);
-      for (; count != numberOfDays; ++count, ++daysInLine) {
+      for (; count <= numberOfDays; ++count, ++daysInLine, ++(this.startDay)) {
         System.out.print(String.format("%4d", count));
         if (daysInLine == 6) {
           System.out.println();
           daysInLine = -1;
         }
+        if (this.startDay == 6)
+          this.startDay = -1;
       }
     }
 
